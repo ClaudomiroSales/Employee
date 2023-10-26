@@ -1,5 +1,6 @@
 #include <iostream>
 using std::cerr;
+using std::cin;
 
 #include <string>
 using std::string;
@@ -8,6 +9,7 @@ using std::getline;
 #include <fstream>
 using std::fstream;
 using std::ifstream;
+using std::ofstream;
 
 #include <sstream>
 using std::istringstream;
@@ -43,4 +45,33 @@ bool loadConfig( map<string, double>& variables, string nameFile )
 
     return true;
 
+}
+
+void createInfos( string nameFile, int id = 0 )
+{
+    int dia;
+    int mes;
+    int ano;
+
+    std::cout << "Para jogar, insira sua data de nascimento (dia mês ano): ";
+    if (!(cin >> dia >> mes >> ano)) {
+        cerr << "entrada inválida!" << '\n';
+        return; // Exit with an error code
+    }
+
+    // abre o arquivo pra escrita 
+    ofstream outputFile(nameFile, std::ios::out | std::ios::trunc);
+    if (!outputFile.is_open()) {
+        cerr << "Erro ao abrir aquivo para escrita!" << '\n';
+        return; //
+    }
+		// escreve no arquivo 
+    outputFile << "id = " << id << '\n';
+    outputFile << "dia = " << dia << '\n';
+    outputFile << "mes = " << mes << '\n';
+    outputFile << "ano = " << ano << '\n';
+
+    outputFile.close();
+    cout << "Dados salvos com sucesso!" << '\n';
+    return;
 }

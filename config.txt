@@ -1,3 +1,4 @@
-numeroVendas = 40;
-ganhoPorVenda = 10.40;
-salary = 1300;
+id = 0
+dia = 2
+mes = 9
+ano = 2000

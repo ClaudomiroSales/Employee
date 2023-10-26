@@ -11,14 +11,20 @@ using std::cout;
 
 int main( )
 {
+    createInfos( "config.txt" );
     map<string, double> variables;
     if( !loadConfig( variables, "config.txt" ) )
         return 1;
 
-    Employee joao( variables["numeroVendas"], variables["ganhoPorVenda"] );
-    EmployeeSalary maria( variables["numeroVendas"], variables["ganhoPorVenda"], variables["salary"] );
-    cout << joao << '\n';
-    cout << maria << '\n';
+    cout << "id = " << variables["id"] << '\n';
+    cout << "dia = " << variables["dia"] << '\n';
+    cout << "mes = " << variables["mes"] << '\n';
+    cout << "ano = " << variables["ano"] << '\n';
+    
+    //Employee joao( variables["numeroVendas"], variables["ganhoPorVenda"] );
+    //EmployeeSalary maria( variables["numeroVendas"], variables["ganhoPorVenda"], variables["salary"] );
+    //cout << joao << '\n';
+    //cout << maria << '\n';
 
     return 0;
 }
