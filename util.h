@@ -1,6 +1,7 @@
 #include <iostream>
 using std::cerr;
 using std::cin;
+using std::cout;
 
 #include <string>
 using std::string;
@@ -53,7 +54,7 @@ void createInfos( string nameFile, int id = 0 )
     int mes;
     int ano;
 
-    std::cout << "Para jogar, insira sua data de nascimento (dia mês ano): ";
+    cout << "Para jogar, insira sua data de nascimento (dia mês ano): ";
     if (!(cin >> dia >> mes >> ano)) {
         cerr << "entrada inválida!" << '\n';
         return; // Exit with an error code
