@@ -48,6 +48,29 @@ bool loadConfig( map<string, double>& variables, string nameFile )
 
 }
 
+bool saveConfigs( map<string, double>& variables, string nameFile )
+{
+    // abre o arquivo pra escrita 
+    ofstream outputFile(nameFile, std::ios::out | std::ios::trunc);
+    if (!outputFile.is_open()) {
+        cerr << "Erro ao abrir aquivo para escrita!" << '\n';
+        return false; //
+    }
+
+    for (const auto& pair : variables)
+        outputFile << pair.first << " = " << pair.second << '\n';
+    
+    // escreve no arquivo 
+   /*  outputFile << "dia = " << dia << '\n';
+    outputFile << "mes = " << mes << '\n';
+    outputFile << "ano = " << ano << '\n';
+ */
+    outputFile.close();
+    cout << "Dados salvos com sucesso!" << '\n';
+    return true;
+}
+
+
 void createInfos( string nameFile, int id = 0 )
 {
     int dia;

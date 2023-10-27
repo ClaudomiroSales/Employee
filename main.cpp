@@ -17,8 +17,8 @@ int main( )
   /*if( !loadConfig( variables, "config.txt" ) )
         return 1; */
 
-    if( !askDayMonthYear( variables ) )
-        return 
+    if( !askDayMonthYear( variables ) ) 
+            return 0;
 
     variables["id"] = 12123;
     cout << "id = " << variables["id"] << '\n';
