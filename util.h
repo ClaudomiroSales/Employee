@@ -42,6 +42,12 @@ bool loadConfig( map<string, double>& variables, string nameFile )
             cerr << "Error parsing line: " << line << '\n';
     }
 
+    if( variables.size( ) == 0 )
+    {   
+        cerr << "No variables found.\n";
+        return false;
+    }
+
     inputFile.close();
 
     return true;
