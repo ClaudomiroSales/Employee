@@ -12,19 +12,40 @@ using std::cout;
 bool askDayMonthYear( map< string, double > & );
 int main( )
 {
-    // createInfos( "config.txt" );
-    map<string, double> variables;
-  /*if( !loadConfig( variables, "config.txt" ) )
-        return 1; */
+    //Maps
+    map<string, double> variables_0;
+    map<string, double> variables_1;
 
-    if( !askDayMonthYear( variables ) ) 
-            return 0;
+    if( !loadConfig( variables_0, "config.txt" ) )
+       {
+           //Input of variables
+           if( !askDayMonthYear( variables_0 ) ) 
+                return 0;   
+           cout << "Entre com o id:\n";
+           cin >> variables_0["id"];
+        }
 
-    variables["id"] = 12123;
-    cout << "id = " << variables["id"] << '\n';
-    cout << "dia = " << variables["dia"] << '\n';
-    cout << "mes = " << variables["mes"] << '\n';
-    cout << "ano = " << variables["ano"] << '\n';
+    if( !saveConfigs( variables_0, "config.txt" ) )
+        return 0;
+
+    cout << "id = " << variables_0["id"] << '\n';
+    cout << "dia = " << variables_0["dia"] << '\n';
+    cout << "mes = " << variables_0["mes"] << '\n';
+    cout << "ano = " << variables_0["ano"] << '\n';
+
+    //Apenas para verificar o que foi salvo no arquivo
+    if( !loadConfig( variables_1, "config.txt" ) )
+        return 0;
+
+    cout << "Se passaram 20 anos.\n";
+    cout << "id = " << variables_1["id"] << '\n';
+    cout << "dia = " << variables_1["dia"] << '\n';
+    cout << "mes = " << variables_1["mes"] << '\n';
+    variables_1["ano"] += 20;
+    cout << "ano = " << variables_1["ano"] << '\n';
+
+    if( !saveConfigs( variables_1, "config.txt" ) )
+        return 0;
     
     //Employee joao( variables["numeroVendas"], variables["ganhoPorVenda"] );
     //EmployeeSalary maria( variables["numeroVendas"], variables["ganhoPorVenda"], variables["salary"] );
@@ -36,9 +57,9 @@ int main( )
 
 bool askDayMonthYear( map< string, double > &variables )
 {
-    cout << "Para jogar, insira sua data de nascimento (dia mês ano): ";
+    cout << "Para jogar, insira sua data de nascimento (dia mes ano): ";
     if (!(cin >> variables["dia"] >> variables["mes"] >> variables["ano"] )) {
-        cerr << "Entrada inválida!" << '\n';
+        cerr << "Entrada invalida!" << '\n';
         return false; // Exit with an error code
     }
 
