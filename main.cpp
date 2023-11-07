@@ -15,7 +15,8 @@ int main( )
     //Maps
     map<string, double> variablesDouble_0;
     map<string, string> variablesString_0;
-    map<string, double> variables_1;
+    map<string, double> variablesDouble_1;
+    map<string, string> variablesString_1;
 
     if( !loadConfig( variablesString_0, variablesDouble_0, "config.txt" ) )
        {
@@ -23,29 +24,32 @@ int main( )
            if( !askDayMonthYear( variablesDouble_0 ) ) 
                 return 0;   
            cout << "Entre com o id:\n";
-           cin >> variablesDouble_0["id"];
+           cin >> variablesString_0["id"];
         }
 
-    if( !saveConfigs( variablesDouble_0, "config.txt" ) )
+    if( !saveConfigs( variablesString_0, variablesDouble_0, "config.txt" ) )
         return 0;
 
-    cout << "id = " << variablesDouble_0["id"] << '\n';
+
+    cout << "id = " << variablesString_0["id"] << '\n';
+
     cout << "dia = " << variablesDouble_0["dia"] << '\n';
     cout << "mes = " << variablesDouble_0["mes"] << '\n';
-    cout << "ano = " << variablesString_0["ano"] << '\n';
+    cout << "ano = " << variablesDouble_0["ano"] << '\n';
+
 
     //Apenas para verificar o que foi salvo no arquivo
-    if( !loadConfig( variables_1, "config.txt" ) )
+    if( !loadConfig( variablesString_1, variablesDouble_1, "config.txt" ) )
         return 0;
 
     cout << "Se passaram 20 anos.\n";
-    cout << "id = " << variables_1["id"] << '\n';
-    cout << "dia = " << variables_1["dia"] << '\n';
-    cout << "mes = " << variables_1["mes"] << '\n';
-    variables_1["ano"] += 20;
-    cout << "ano = " << variables_1["ano"] << '\n';
+    cout << "id = " << variablesString_1["id"] << '\n';
+    cout << "dia = " << variablesDouble_1["dia"] << '\n';
+    cout << "mes = " << variablesDouble_1["mes"] << '\n';
+    variablesDouble_1["ano"] += 20;
+    cout << "ano = " << variablesDouble_1["ano"] << '\n';
 
-    if( !saveConfigs( variables_1, "config.txt" ) )
+    if( !saveConfigs( variablesString_1, variablesDouble_1, "config.txt" ) )
         return 0;
     
     //Employee joao( variables["numeroVendas"], variables["ganhoPorVenda"] );
