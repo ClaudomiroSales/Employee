@@ -13,25 +13,26 @@ bool askDayMonthYear( map< string, double > & );
 int main( )
 {
     //Maps
-    map<string, double> variables_0;
+    map<string, double> variablesDouble_0;
+    map<string, string> variablesString_0;
     map<string, double> variables_1;
 
-    if( !loadConfig( variables_0, "config.txt" ) )
+    if( !loadConfig( variablesString_0, variablesDouble_0, "config.txt" ) )
        {
            //Input of variables
-           if( !askDayMonthYear( variables_0 ) ) 
+           if( !askDayMonthYear( variablesDouble_0 ) ) 
                 return 0;   
            cout << "Entre com o id:\n";
-           cin >> variables_0["id"];
+           cin >> variablesDouble_0["id"];
         }
 
-    if( !saveConfigs( variables_0, "config.txt" ) )
+    if( !saveConfigs( variablesDouble_0, "config.txt" ) )
         return 0;
 
-    cout << "id = " << variables_0["id"] << '\n';
-    cout << "dia = " << variables_0["dia"] << '\n';
-    cout << "mes = " << variables_0["mes"] << '\n';
-    cout << "ano = " << variables_0["ano"] << '\n';
+    cout << "id = " << variablesDouble_0["id"] << '\n';
+    cout << "dia = " << variablesDouble_0["dia"] << '\n';
+    cout << "mes = " << variablesDouble_0["mes"] << '\n';
+    cout << "ano = " << variablesString_0["ano"] << '\n';
 
     //Apenas para verificar o que foi salvo no arquivo
     if( !loadConfig( variables_1, "config.txt" ) )
