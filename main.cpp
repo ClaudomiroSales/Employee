@@ -27,28 +27,32 @@ int main( )
            cin >> variablesString_0["id"];
         }
 
-    if( !saveConfigs( variablesString_0, variablesDouble_0, "config.txt" ) )
-        return 0;
-
-
+    cout << "Nome = " << variablesString_0["nome"] << '\n';
     cout << "id = " << variablesString_0["id"] << '\n';
+    cout << "Weapon = " << variablesString_0["weapon"] << '\n';
 
     cout << "dia = " << variablesDouble_0["dia"] << '\n';
     cout << "mes = " << variablesDouble_0["mes"] << '\n';
     cout << "ano = " << variablesDouble_0["ano"] << '\n';
 
+    if( !saveConfigs( variablesString_0, variablesDouble_0, "config.txt" ) )
+        return 0;    
 
+    
     //Apenas para verificar o que foi salvo no arquivo
     if( !loadConfig( variablesString_1, variablesDouble_1, "config.txt" ) )
         return 0;
 
     cout << "Se passaram 20 anos.\n";
+    cout << "Nome = " << variablesString_1["nome"] << '\n';
     cout << "id = " << variablesString_1["id"] << '\n';
+    cout << "Weapon = " << variablesString_1["weapon"] << '\n';
     cout << "dia = " << variablesDouble_1["dia"] << '\n';
     cout << "mes = " << variablesDouble_1["mes"] << '\n';
     variablesDouble_1["ano"] += 20;
     cout << "ano = " << variablesDouble_1["ano"] << '\n';
 
+    
     if( !saveConfigs( variablesString_1, variablesDouble_1, "config.txt" ) )
         return 0;
     
