@@ -1,5 +1,6 @@
-ano = 2040
+ano = 2260
 dia = 2
-id = 0
 mes = 9
 id = "re133"
+nome = "Catarina"
+weapon = "Espada_do_Mago"
