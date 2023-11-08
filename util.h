@@ -87,11 +87,20 @@ bool loadConfig( map<string, string>& stringVariables, map<string, double>& doub
 
         // Check if the value is a number (double)
         istringstream valueStream(value);
-        if (!(valueStream >> doubleVariables[variableName]))
+        double valueDouble;
+        if (valueStream >> valueDouble)
+            doubleVariables[variableName] = valueDouble;
+        else
             stringVariables[variableName] = value;           
     }    
 
     inputFile.close();
+
+    /*
+    cout << "doubleVariables keys.\n";
+    for (const auto& pair : doubleVariables)
+        cout << "Key: " << pair.first << '\n';
+    */
 
     if (doubleVariables.empty() && stringVariables.empty()) 
     {
@@ -124,7 +133,7 @@ bool saveConfigs( map<string, double>& variables, string nameFile )
 bool saveConfigs( map<string, string>& stringVariables, map<string, double>& doubleVariables, string nameFile )
 {
     // abre o arquivo pra escrita 
-    ofstream outputFile(nameFile, std::ios::out | std::ios::trunc);
+    ofstream outputFile(nameFile);//, std::ios::out | std::ios::trunc);
     if (!outputFile.is_open()) {
         cerr << "Erro ao abrir aquivo para escrita!" << '\n';
         return false; //
@@ -133,8 +142,15 @@ bool saveConfigs( map<string, string>& stringVariables, map<string, double>& dou
     for (const auto& pair : doubleVariables)
         outputFile << pair.first << " = " << pair.second << '\n';  
 
-    for (const auto& pair : stringVariables)
-       outputFile << pair.first << " = " << pair.second << '\n';    
+    /*
+    cout << "Salvando strings.\n";
+    cout << "Nome = " << stringVariables["nome"] << '\n';
+    cout << "id = " << stringVariables["id"] << '\n';
+    cout << "Weapon = " << stringVariables["weapon"] << '\n';
+    */
+
+    for (map<string, string>::value_type&  pairString : stringVariables)
+       outputFile << pairString.first << " = " << pairString.second << '\n';    
 
     outputFile.close();
     cout << "Dados salvos com sucesso!" << '\n';
